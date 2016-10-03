@@ -7,26 +7,10 @@ module.exports = function createThrottle (max) {
   const queue = []
   return function throttled (fn) {
     return new Promise(function (resolve, reject) {
-      if (cur < max) {
+
+      function handleFn() {
         cur++
         fn()
-        .then(function (val) {
-          resolve(val)
-          cur--
-          if (queue.length) queue.shift()()
-        })
-        .catch(function (err) {
-          reject(err)
-          cur--
-          if (queue.length) queue.shift()()
-        })
-      } else {
-        if (cur < max) {
-          // avoid a race condition where the
-          // concurrency went down prior to this
-          // promise being executed in a microtask
-          cur++
-          fn()
           .then(function (val) {
             resolve(val)
             cur--
@@ -37,21 +21,18 @@ module.exports = function createThrottle (max) {
             cur--
             if (queue.length) queue.shift()()
           })
+      }
+
+      if (cur < max) {
+        handleFn()
+      } else {
+        if (cur < max) {
+          // avoid a race condition where the
+          // concurrency went down prior to this
+          // promise being executed in a microtask
+          handleFn()
         } else {
-          queue.push(function () {
-            cur++
-            fn()
-            .then(function (val) {
-              resolve(val)
-              cur--
-              if (queue.length) queue.shift()()
-            })
-            .catch(function (err) {
-              reject(err)
-              cur--
-              if (queue.length) queue.shift()()
-            })
-          })
+          queue.push(() => { handleFn() })
         }
       }
     })
