@@ -1,5 +1,7 @@
 # async-throttle
 
+[![Build Status](https://travis-ci.org/zeit/async-throttle.svg?branch=master)](https://travis-ci.org/zeit/async-throttle)
+
 Throttling made simple, easy, async.
 
 ## How to use
