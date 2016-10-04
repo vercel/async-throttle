@@ -34,6 +34,7 @@ To run this example:
 
 ```
 git clone git@github.com:zeit/async-throttle
+cd async-throttle
 npm install
-async-node example.js
+npm run example
 ```
