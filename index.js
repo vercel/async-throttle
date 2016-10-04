@@ -1,3 +1,5 @@
+"use strict"
+
 module.exports = function createThrottle (max) {
   if (typeof max !== 'number') {
     throw new TypeError('`createThrottle` expects a valid Number')
