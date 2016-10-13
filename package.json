@@ -7,30 +7,28 @@
     "index.js"
   ],
   "scripts": {
-    "test": "ava",
+    "test": "xo && ava",
     "example": "async-node example"
   },
   "description": "Throttle asynchronous Promise-based tasks",
   "devDependencies": {
-    "ava": "0.16.0",
     "async-to-gen": "1.1.3",
+    "ava": "0.16.0",
     "babel-eslint": "7.0.0",
     "cheerio": "0.22.0",
-    "eslint": "3.6.1",
-    "eslint-config-standard": "6.2.0",
-    "eslint-plugin-promise": "2.0.1",
-    "eslint-plugin-standard": "2.0.1",
     "node-fetch": "1.6.3",
-    "then-sleep": "1.0.1"
-  },
-  "eslintConfig": {
-    "extends": "standard",
-    "parser": "babel-eslint"
+    "then-sleep": "1.0.1",
+    "xo": "^0.17.0"
   },
   "ava": {
     "files": [
       "test.js"
     ],
     "require": "async-to-gen/register"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "semicolon": false
   }
 }
