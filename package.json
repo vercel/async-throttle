@@ -1,6 +1,6 @@
 {
   "name": "async-throttle",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "zeit/async-throttle",
   "files": [
