@@ -1,13 +1,13 @@
 'use strict'
 
-module.exports = function (max) {
+function createThrottle(max) {
   if (typeof max !== 'number') {
     throw new TypeError('`createThrottle` expects a valid Number')
   }
 
   let cur = 0
   const queue = []
-  return function (fn) {
+  function throttle(fn) {
     return new Promise((resolve, reject) => {
       function handleFn() {
         if (cur < max) {
@@ -35,4 +35,8 @@ module.exports = function (max) {
       handleFn()
     })
   }
+
+  return throttle
 }
+
+module.exports = createThrottle
