@@ -11,18 +11,18 @@ function createThrottle(max) {
     return new Promise((resolve, reject) => {
       function handleFn() {
         if (cur < max) {
-          cur++
+          throttle.current = ++cur
           fn()
             .then(val => {
               resolve(val)
-              cur--
+              throttle.current = --cur
               if (queue.length > 0) {
                 queue.shift()()
               }
             })
             .catch(err => {
               reject(err)
-              cur--
+              throttle.current = --cur
               if (queue.length > 0) {
                 queue.shift()()
               }
@@ -35,6 +35,10 @@ function createThrottle(max) {
       handleFn()
     })
   }
+
+  // keep copies of the "state" for retrospection
+  throttle.current = cur
+  throttle.queue = queue
 
   return throttle
 }
