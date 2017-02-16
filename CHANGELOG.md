@@ -1,3 +1,10 @@
+1.1.0 / 2016-10-26
+==================
+
+* [[`5bf754037e`](https://github.com/zeit/async-throttle/commit/5bf754037e)] - add retrospection test case (Nathan Rajlich)
+* [[`61efd5a93a`](https://github.com/zeit/async-throttle/commit/61efd5a93a)] - keep copies of the "state" for retrospection (Nathan Rajlich)
+* [[`0add37762e`](https://github.com/zeit/async-throttle/commit/0add37762e)] - fix xo lint (Nathan Rajlich)
+
 1.0.0 / 2016-10-26
 ==================
 
