@@ -113,3 +113,20 @@ test('errors should not interrupt the queue', async t => {
     })
   })
 })
+
+test('retrospection', async t => {
+  const throttle = createThrottle(3)
+  t.is(throttle.current, 0)
+
+  const p1 = throttle(async () => await sleep(100))
+  t.is(throttle.current, 1)
+
+  const p2 = throttle(async () => await sleep(100))
+  t.is(throttle.current, 2)
+
+  const p3 = throttle(async () => await sleep(100))
+  t.is(throttle.current, 3)
+
+  await Promise.all([p1, p2, p3])
+  t.is(throttle.current, 0)
+})
