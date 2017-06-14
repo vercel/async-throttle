@@ -31,7 +31,7 @@ Promise.all(urls.map(throttle(async url => {
   const $ = cheerio(data)
   return $('title').text()
 })))
-.then((titles) => console.log('Titles:', titles))
+.then(titles => console.log('Titles:', titles))
 ```
 
 To run this example:
