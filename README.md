@@ -18,13 +18,13 @@ but it processes a maximum of **two at a time**.
 ```js
 // deps
 const fetch = require('node-fetch')
-const createThrottle = require('async-throttle')
 const cheerio = require('cheerio').load
+const createThrottle = require('async-throttle')
 
 // code
 const throttle = createThrottle(2)
 const urls = ['https://zeit.co', 'https://google.com', /* … */]
-Promise.all(urls.map((url) => throttle(async () => {
+Promise.all(urls.map(throttle(async url => {
   console.log('Processing', url)
   const res = await fetch(url)
   const data = await res.text()
@@ -40,5 +40,5 @@ To run this example:
 git clone git@github.com:zeit/async-throttle
 cd async-throttle
 npm install
-npm run example
+node example
 ```
